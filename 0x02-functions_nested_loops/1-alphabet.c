@@ -5,7 +5,7 @@
  *                  by a new line, using only _putchar function
  *                  and only twice in the code
  *
- * Return: Always 0 (Success)
+ * Return: void
  */
 void print_alphabet(void)
 {
