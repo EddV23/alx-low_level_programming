@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * main - prints the alphabets in lowercase followed by a
- *        new line, using only _putchar function and
- *        only twice in the code
+ * print_alphabet - prints the alphabets in lowercase followed
+ *                  by a new line, using only _putchar function
+ *                  and only twice in the code
  *
  * Return: Always 0 (Success)
  */
