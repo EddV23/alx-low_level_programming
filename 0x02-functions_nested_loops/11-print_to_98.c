@@ -1,0 +1,21 @@
+#include "main.h"
+#include <stdio.h>
+
+/**
+ * print_to_98 - prints all natural numbers from n to 98,
+ *               followed by a new line
+ * @n : natural number to be evaluated
+ * Return: void
+ */
+void print_to_98(int n)
+{
+	while (n != 98)
+	{
+		printf("%d, ", n);
+		if (n < 98)
+			n += 1;
+		else
+			n -= 1;
+	}
+	printf("98\n");
+}
