@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define MAX_DIFGITS 1000
+#define MAX_DIGITS 1000
 
 /**
  * add_arrays - checks and adds the arrays
