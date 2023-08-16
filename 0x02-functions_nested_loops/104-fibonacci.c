@@ -41,6 +41,7 @@ int main(void)
 	{
 		add_arrays(fib_sum, fib1, fib2);
 		printf(", ");
+		i = 0;
 		while (fib_sum[i] == 0 && i < MAX_DIGITS)
 			i++;
 		if (i == MAX_DIGITS)
