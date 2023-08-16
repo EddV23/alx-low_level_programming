@@ -9,9 +9,9 @@
 int main(void)
 {
 	/*declaration of variables*/
-	long long a = 1, b = 2, temp, n;
+	long a = 1, b = 2, temp, n;
 
-	printf("%lld, %lld", a, b);
+	printf("%ld, %ld", a, b);
 	for (n = 2; n < 50; n++)
 	{
 		temp = a + b;
