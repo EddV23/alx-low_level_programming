@@ -32,7 +32,7 @@ int main(void)
 	int fib1[MAX_DIGITS] = {0};
 	int fib2[MAX_DIGITS] = {0};
 	int fib_sum[MAX_DIGITS] = {0};
-	int n;
+	int n, i;
 
 	fib1[MAX_DIGITS - 1] = 1;
 	fib2[MAX_DIGITS - 1] = 2;
@@ -41,8 +41,6 @@ int main(void)
 	{
 		add_arrays(fib_sum, fib1, fib2);
 		printf(", ");
-		int i = 0;
-
 		while (fib_sum[i] == 0 && i < MAX_DIGITS)
 			i++;
 		if (i == MAX_DIGITS)
