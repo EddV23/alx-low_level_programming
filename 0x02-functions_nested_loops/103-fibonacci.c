@@ -10,7 +10,8 @@
 int main(void)
 {
 	/*declaration of variables*/
-	long a = 1, b = 2, temp, sum;
+	long a = 1, b = 2, temp;
+	long sum = 0;
 
 	while (a <= 4000000)
 	{
