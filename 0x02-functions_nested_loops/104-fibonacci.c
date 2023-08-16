@@ -32,11 +32,12 @@ int main(void)
 	int fib1[MAX_DIGITS] = {0};
 	int fib2[MAX_DIGITS] = {0};
 	int fib_sum[MAX_DIGITS] = {0};
+	int n;
 
 	fib1[MAX_DIGITS - 1] = 1;
 	fib2[MAX_DIGITS - 1] = 2;
 	printf("1, 2");
-	for (int n = 2; n < 98; n++)
+	for (n = 2; n < 98; n++)
 	{
 		add_arrays(fib_sum, fib1, fib2);
 		printf(", ");
