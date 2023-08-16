@@ -9,13 +9,13 @@
 int main(void)
 {
 	/*declaration of variables*/
-	long a = 1, b = 2, temp, n;
+	unsigned int a = 1, b = 2, temp, n;
 
-	printf("%ld, %ld", a, b);
+	printf("%u, %u", a, b);
 	for (n = 2; n < 98; n++)
 	{
 		temp = a + b;
-		printf(", %ld", temp);
+		printf(", %u", temp);
 		a = b;
 		b = temp;
 	}
