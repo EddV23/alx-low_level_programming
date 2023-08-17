@@ -7,12 +7,17 @@
  */
 void print_number(int n)
 {
+	/*declaration of absolute value variable*/
+	unsigned int abs;
+
 	if (n < 0)
 	{
-		n = -n;
+		abs = -n;
 		_putchar('-');
 	}
-	if (n >= 10)
-		print_number(n / 10);
-	_putchar('0' + n % 10);
+	else
+		abs = n;
+	if (abs / 10)
+		print_number(abs / 10);
+	_putchar('0' + (abs % 10));
 }
