@@ -16,13 +16,12 @@ int main(void)
 	int sum = 0;
 
 	srand(time(NULL));
-	for (i = 0; i < PASSWORD_LENGTH; i++)
+	for (i = 0; i < PASSWORD_LENGTH - 1; i++)
 	{
-		if (i == PASSWORD_LENGTH - 1)
-			password[i] = (2772 - sum) % 94 + 33;
-		else
-			password[i] = rand() % 94 + 33;
+		password[i] = rand() % 94 + 33;
+		sum += password[i];
 	}
+	password[PASSWORD_LENGTH - 1] = 2772 - sum;
 	password[PASSWORD_LENGTH] = '\0';
 	printf("%s\n", password);
 	return (0);
