@@ -11,18 +11,18 @@
 int main(void)
 {
 	int i = 0;
-	int password = 0;
+	int key = 0;
 	time_t t;
 
 	srand((unsigned int) time(&t));
-	while (password < 2772)
+	while (key < 2772)
 	{
 		i = rand() % 128;
-		if ((i + password) > 2772)
+		if ((key + i) > 2772)
 			break;
-		password = password + i;
+		key = key + i;
 		printf("%c", i);
 	}
-	printf("%c\n", (2772 - password));
+	printf("%c\n", (2772 - key));
 	return (0);
 }
