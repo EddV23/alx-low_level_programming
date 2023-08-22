@@ -7,22 +7,21 @@
  *
  * Return: (0) Always Success
  */
-#define PASSWORD_LENGTH 59
 
 int main(void)
 {
-	char password[PASSWORD_LENGTH + 1];
 	int i = 0;
-	int sum = 0;
+	int password = 0;
+	time_t t;
 
-	srand(time(NULL));
-	for (i = 0; i < PASSWORD_LENGTH - 1; i++)
+	srand((unsigned int) time(&t));
+	while (password < 2772)
 	{
-		password[i] = rand() % 94 + 33;
-		sum += password[i];
+		i = rand() % 128;
+		if (i + password > 2772)
+			break;
+		password = password + i;
 	}
-	password[PASSWORD_LENGTH - 1] = 2772 - sum;
-	password[PASSWORD_LENGTH] = '\0';
-	printf("%s\n", password);
+	printf("%c\n", (2772 - password));
 	return (0);
 }
