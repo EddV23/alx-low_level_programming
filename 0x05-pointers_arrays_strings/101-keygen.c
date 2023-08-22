@@ -18,9 +18,10 @@ int main(void)
 	while (password < 2772)
 	{
 		i = rand() % 128;
-		if (i + password > 2772)
+		if ((i + password) > 2772)
 			break;
 		password = password + i;
+		printf("%c", i);
 	}
 	printf("%c\n", (2772 - password));
 	return (0);
