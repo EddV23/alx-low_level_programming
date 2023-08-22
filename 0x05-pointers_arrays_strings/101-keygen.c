@@ -12,9 +12,10 @@
 int main(void)
 {
 	char password[PASSWORD_LENGTH + 1];
+	int i = 0;
 
 	srand(time(NULL));
-	for (int i = 0; i < PASSWORD_LENGTH; i++)
+	for (i = 0; i < PASSWORD_LENGTH; i++)
 		password[i] = rand() % 94 + 33;
 	password[PASSWORD_LENGTH] = '\0';
 	printf("%s\n", password);
