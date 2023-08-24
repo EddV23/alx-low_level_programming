@@ -14,7 +14,7 @@ char *rot13(char *str)
 
 	for (; *ptr; ptr++)
 	{
-		for (i = 0; rot_dict[i] <= 51; i++)
+		for (i = 0; i <= 51; i++)
 		{
 			if (*ptr == rot_dict[i])
 			{
