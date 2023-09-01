@@ -52,18 +52,15 @@ int _atoi(char *s)
 	int i = 0;
 	int digit = 0;
 
-	while (s[i])
+	if (s[i] == '-')
 	{
-		if (s[i] == '-')
-			sign *= -1;
-		while (s[i] >= '0' && s[i] <= '9')
-		{
-			digit = 1;
-			result = result * 10 + (s[i] - '0');
-			i++;
-		}
-		if (digit == 1)
-			break;
+		sign *= -1;
+		i++;
+	}
+	while (s[i] >= '0' && s[i] <= '9')
+	{
+		digit = 1;
+		result = result * 10 + (s[i] - '0');
 		i++;
 	}
 	if (digit == 0)
