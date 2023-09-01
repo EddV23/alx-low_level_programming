@@ -66,6 +66,8 @@ int _atoi(char *s)
 			break;
 		i++;
 	}
+	if (digit == 0)
+		return (0);
 	result *= sign;
 	return (result);
 }
