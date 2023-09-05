@@ -59,7 +59,6 @@ char **strtow(char *str)
 
 	if (str == NULL || *str == '\0')
 		return (NULL);
-
 	wc = word_count(str);
 	if (wc == 0)
 		return (NULL);
@@ -73,7 +72,6 @@ char **strtow(char *str)
 	{
 		while (is_space(*str))
 			str++;
-
 		if (*str)
 		{
 			start = str;
@@ -89,7 +87,6 @@ char **strtow(char *str)
 				free(words);
 				return (NULL);
 			}
-
 			strncpy(words[i], start, word_len);
 			words[i][word_len] = '\0';
 			i++;
