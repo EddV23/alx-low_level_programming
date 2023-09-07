@@ -1,80 +1,12 @@
-#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include "main.h"
+
+int getLength(char *str);
+void handleError(void);
 
 /**
- * isNumeric - Checks if a string contains only digits.
- * @str: The input string to be checked.
- *
- * Return: 1 if the string contains only digits, 0 otherwise.
- */
-int isNumeric(const char *str)
-{
-	int i;
-
-	for (i = 0; str[i] != '\0'; i++)
-	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
-	}
-	return (1);
-}
-
-/**
- * multiply - Multiplies two positive numbers represented as strings.
- * @num1: The first positive number as a string.
- * @num2: The second positive number as a string.
- *
- * Return: A newly allocated string containing the
- *         result of the multiplication.
- *         This result should be freed after use.
- */
-char *multiply(char *num1, char *num2)
-{
-	int len1 = strlen(num1);
-	int len2 = strlen(num2);
-	int len3 = len1 + len2;
-	int *result, i, j, mul, sum;
-	char *resultStr;
-
-	result = calloc(len3, sizeof(int));
-	if (result == NULL)
-	{
-		perror("Error");
-		exit(98);
-	}
-	for (i = len1 - 1; i >= 0; i--)
-	{
-		for (j = len2 - 1; j >= 0; j--)
-		{
-			mul = (num1[i] - '0') * (num2[j] - '0');
-			sum = mul + result[i + j + 1];
-
-			result[i + j] += sum / 10;
-			result[i + j + 1] = sum % 10;
-		}
-	}
-	resultStr = malloc(len3 + 1);
-	if (resultStr == NULL)
-	{
-		perror("Error");
-		free(result);
-		exit(98);
-	}
-	for (i = 0; i < len3; i++)
-		resultStr[i] = result[i] + '0';
-
-	resultStr[len3] = '\0';
-	/*free(result);*/
-	i = 0;
-	while (resultStr[i] == '0' && resultStr[i + 1] != '\0')
-		i++;
-	return (&resultStr[i]);
-}
-
-/**
- * main - multiplies two positive numbers
+ * main - Multiplies two positive numbers
  * @argc: The number of command-line arguments
  * @argv: An array of command-line argument strings
  *
@@ -82,22 +14,81 @@ char *multiply(char *num1, char *num2)
  */
 int main(int argc, char *argv[])
 {
-	char *num1, *num2, *result;
+	char *num1, *num2;
+	int length1, length2, totalLen, *res, tempSum;
+	int i, nz, d1, d2;
 
-	if (argc != 3 || !isNumeric(argv[1]) || !isNumeric(argv[2]))
-	{
-		printf("Error\n");
-		return (98);
-	}
+	if (argc != 3)
+		handleError();
+
 	num1 = argv[1];
 	num2 = argv[2];
-	result = multiply(num1, num2);
-	if (result == NULL)
+	length1 = getLength(num1);
+	length2 = getLength(num2);
+	totalLen = length1 + length2 + 1;
+
+	res = malloc(sizeof(int) * totalLen);
+	if (!res)
+		return (1);
+
+	for (i = 0; i <= length1 + length2; i++)
+		res[i] = 0;
+
+	for (length1 = length1 - 1; length1 >= 0; length1--)
 	{
-		printf("Error\n");
-		return (98);
+		d1 = num1[length1] - '0';
+		tempSum = 0;
+
+		for (length2 = getLength(num2) - 1; length2 >= 0; length2--)
+		{
+			d2 = num2[length2] - '0';
+			tempSum += res[length1 + length2 + 1] + (d1 * d2);
+			res[length1 + length2 + 1] = tempSum % 10;
+			tempSum /= 10;
+		}
+
+		if (tempSum > 0)
+			res[length1 + length2 + 1] += tempSum;
 	}
-	printf("%s\n", result);
-	/*free(result);*/
+
+	nz = 0;
+	for (i = 0; i < totalLen - 1; i++)
+	{
+		if (res[i] != 0)
+			nz = 1;
+		if (nz)
+			_putchar(res[i] + '0');
+	}
+
+	if (!nz)
+		_putchar('0');
+
+	_putchar('\n');
+	free(res);
 	return (0);
+}
+
+/**
+ * getLength - Returns the length of a string.
+ * @str: The input string.
+ *
+ * Return: The length of the string.
+ */
+int getLength(char *str)
+{
+	int length = 0;
+
+	for (length = 0; str[length] != '\0'; length++)
+		;
+	return (length);
+}
+
+/**
+ * handleError - Handles errors and prints an error message
+ * Return : void
+ */
+void handleError(void)
+{
+	printf("Error\n");
+	exit(98);
 }
