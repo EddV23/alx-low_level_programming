@@ -25,8 +25,13 @@ int main(int argc, char *argv[])
 	num1 = argv[1];
 	num2 = argv[2];
 	result = multiply(num1, num2);
+	if (result == NULL)
+	{
+		printf("Error\n");
+		return (98);
+	}
 	printf("%s\n", result);
-	/*free(result);*/
+	free(result);
 	return (0);
 }
 
