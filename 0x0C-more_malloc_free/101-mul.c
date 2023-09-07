@@ -5,7 +5,6 @@
 
 char *multiply(char *num1, char *num2);
 int isNumeric(const char *str);
-int _isdigit(int c);
 
 /**
  * main - multiplies two positive numbers
@@ -16,21 +15,18 @@ int _isdigit(int c);
  */
 int main(int argc, char *argv[])
 {
-	char *result;
+	char *num1, *num2, *result;
 
-	if (argc != 3)
+	if (argc != 3 || !isNumeric(argv[1]) || !isNumeric(argv[2]))
 	{
 		printf("Error\n");
 		return (98);
 	}
-	if (!isNumeric(argv[1]) || !isNumeric(argv[2]))
-	{
-		printf("Error\n");
-		return (98);
-	}
-	result = multiply(argv[1], argv[2]);
+	num1 = argv[1];
+	num2 = argv[2];
+	result = multiply(num1, num2);
 	printf("%s\n", result);
-	free(result);
+	/*free(result);*/
 	return (0);
 }
 
@@ -53,6 +49,11 @@ char *multiply(char *num1, char *num2)
 
 	result = calloc(len3, sizeof(int));
 
+	if (result == NULL)
+	{
+		perror("Error");
+		exit(98);
+	}
 	for (i = len1 - 1; i >= 0; i--)
 	{
 		for (j = len2 - 1; j >= 0; j--)
@@ -64,16 +65,23 @@ char *multiply(char *num1, char *num2)
 			result[i + j + 1] = sum % 10;
 		}
 	}
-	while (len3 > 0 && result[len3 - 1] == 0)
-		len3--;
-
 	resultStr = malloc(len3 + 1);
+	if (resultStr == NULL)
+	{
+		perror("Error");
+		free(result);
+		exit(98);
+	}
 	for (i = 0; i < len3; i++)
 		resultStr[i] = result[i] + '0';
 
 	resultStr[len3] = '\0';
 	free(result);
-	return (resultStr);
+
+	i = 0;
+	while (resultStr[i] == '0' && resultStr[i + 1] != '\0')
+		i++;
+	return (&resultStr[i]);
 }
 
 /**
@@ -86,23 +94,10 @@ int isNumeric(const char *str)
 {
 	int i;
 
-	for (i = 0; str[i]; i++)
+	for (i = 0; str[i] != '\0'; i++)
 	{
-		if (!_isdigit(str[i]))
+		if (str[i] < '0' || str[i] > '9')
 			return (0);
 	}
 	return (1);
-}
-
-/**
- * _isdigit - checks for a digit (0 through 9)
- * @c : character to be checked
- * Return: 1 if is a digit, 0 otherwise
- */
-int _isdigit(int c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	else
-		return (0);
 }
