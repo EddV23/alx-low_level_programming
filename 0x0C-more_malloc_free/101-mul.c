@@ -7,11 +7,11 @@ char *multiply(char *num1, char *num2);
 int isNumeric(const char *str);
 
 /**
- * main - multiplies two positive numbers
- * @argc: The number of command-line arguments
- * @argv: An array of command-line argument strings
+ * main - Entry point of the program. Multiplies two positive numbers.
+ * @argc: The number of command-line arguments.
+ * @argv: An array of command-line argument strings.
  *
- * Return: 0 on successful execution, or 98 in case of an error
+ * Return: 0 on successful execution, or 98 in case of an error.
  */
 int main(int argc, char *argv[])
 {
@@ -51,6 +51,9 @@ char *multiply(char *num1, char *num2)
 	int len3 = len1 + len2;
 	int *result, i, j, mul, sum;
 	char *resultStr;
+
+	if (len1 == 0 || len2 == 0)
+		return NULL;
 
 	result = calloc(len3, sizeof(int));
 
