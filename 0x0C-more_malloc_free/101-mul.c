@@ -1,3 +1,4 @@
+#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,9 +16,7 @@ int isNumeric(const char *str)
 	for (i = 0; str[i] != '\0'; i++)
 	{
 		if (str[i] < '0' || str[i] > '9')
-		{
 			return (0);
-		}
 	}
 	return (1);
 }
@@ -31,15 +30,15 @@ int isNumeric(const char *str)
  *         result of the multiplication.
  *         This result should be freed after use.
  */
-char *multiply(const char *num1, const char *num2)
+char *multiply(char *num1, char *num2)
 {
 	int len1 = strlen(num1);
 	int len2 = strlen(num2);
-	int lenResult = len1 + len2;
-	int *result = calloc(lenResult, sizeof(int));
-	int i, j, product, sum;
+	int len3 = len1 + len2;
+	int *result, i, j, mul, sum;
 	char *resultStr;
 
+	result = calloc(len3, sizeof(int));
 	if (result == NULL)
 	{
 		perror("Error");
@@ -49,36 +48,37 @@ char *multiply(const char *num1, const char *num2)
 	{
 		for (j = len2 - 1; j >= 0; j--)
 		{
-			product = (num1[i] - '0') * (num2[j] - '0');
-			sum = product + result[i + j + 1];
+			mul = (num1[i] - '0') * (num2[j] - '0');
+			sum = mul + result[i + j + 1];
+
 			result[i + j] += sum / 10;
 			result[i + j + 1] = sum % 10;
 		}
 	}
-	resultStr = malloc(lenResult + 1);
+	resultStr = malloc(len3 + 1);
 	if (resultStr == NULL)
 	{
 		perror("Error");
 		free(result);
 		exit(98);
 	}
-	for (i = 0; i < lenResult; i++)
+	for (i = 0; i < len3; i++)
 		resultStr[i] = result[i] + '0';
-	resultStr[lenResult] = '\0';
-	free(result);
 
+	resultStr[len3] = '\0';
+	/*free(result);*/
 	i = 0;
 	while (resultStr[i] == '0' && resultStr[i + 1] != '\0')
-	i++;
+		i++;
 	return (&resultStr[i]);
 }
 
 /**
- * main - Entry point of the program. Multiplies two positive numbers.
- * @argc: The number of command-line arguments.
- * @argv: An array of command-line argument strings.
+ * main - multiplies two positive numbers
+ * @argc: The number of command-line arguments
+ * @argv: An array of command-line argument strings
  *
- * Return: 0 on successful execution, or 98 in case of an error.
+ * Return: 0 on successful execution, or 98 in case of an error
  */
 int main(int argc, char *argv[])
 {
@@ -91,12 +91,13 @@ int main(int argc, char *argv[])
 	}
 	num1 = argv[1];
 	num2 = argv[2];
-
 	result = multiply(num1, num2);
-
+	if (result == NULL)
+	{
+		printf("Error\n");
+		return (98);
+	}
 	printf("%s\n", result);
-
-	free(result);
-
+	/*free(result);*/
 	return (0);
 }
