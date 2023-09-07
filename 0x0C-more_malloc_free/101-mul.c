@@ -53,7 +53,7 @@ char *multiply(char *num1, char *num2)
 	char *resultStr;
 
 	if (len1 == 0 || len2 == 0)
-		return NULL;
+		return (NULL);
 
 	result = calloc(len3, sizeof(int));
 
