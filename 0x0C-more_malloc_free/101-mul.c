@@ -45,17 +45,15 @@ int main(int argc, char *argv[])
 			d2 = num2[length2] - '0';
 			tempSum += res[length1 + length2 + 1] + (d1 * d2);
 			res[length1 + length2 + 1] = tempSum % 10;
-			tempSum /= 10;
+			tempSum = tempSum / 10;
 		}
 
 		if (tempSum > 0)
 			res[length1 + length2 + 1] += tempSum;
 	}
-
-	nz = 0;
 	for (i = 0; i < totalLen - 1; i++)
 	{
-		if (res[i] != 0)
+		if (res[i])
 			nz = 1;
 		if (nz)
 			_putchar(res[i] + '0');
@@ -80,7 +78,7 @@ int _isdigit(char *str)
 
 	for (i = 0; str[i]; i++)
 	{
-		if (*str < '0' && *str < '9')
+		if (str[i] < '0' || str[i] > '9')
 			return (0);
 	}
 	return (1);
@@ -94,7 +92,7 @@ int _isdigit(char *str)
  */
 int getLength(char *str)
 {
-	int length = 0;
+	int length;
 
 	for (length = 0; str[length] != '\0'; length++)
 		;
