@@ -16,7 +16,7 @@ int _isdigit(char *str)
 		if (str[i] < '0' || str[i] > '9')
 			return (0);
 	}
-	return (i);
+	return (1);
 }
 
 /**
@@ -27,7 +27,7 @@ int _isdigit(char *str)
  */
 int getLength(char *str)
 {
-	int length;
+	int length = 0;
 
 	for (length = 0; str[length] != '\0'; length++)
 		;
@@ -49,7 +49,7 @@ void handleError(void)
  * @argc: The number of command-line arguments
  * @argv: An array of command-line argument strings
  *
- * Return: 0 on successful execution, or 98 in case of an error
+ * Return: 0 Always (Succesful), or 98 in case of an error
  */
 int main(int argc, char *argv[])
 {
@@ -57,9 +57,8 @@ int main(int argc, char *argv[])
 	int length1, length2, totalLen, *res, tempSum, i, nz = 0, d1, d2;
 
 	num1 = argv[1], num2 = argv[2];
-	if (!_isdigit(num1) || !_isdigit(num2) || argc != 3)
+	if (argc != 3 || !_isdigit(num1) || !_isdigit(num2))
 		handleError();
-
 	length1 = getLength(num1), length2 = getLength(num2);
 	totalLen = length1 + length2 + 1;
 	res = malloc(sizeof(int) * totalLen);
