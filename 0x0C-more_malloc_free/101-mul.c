@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "main.h"
 
+int _isdigit(char *str);
 int getLength(char *str);
 void handleError(void);
 
@@ -20,7 +21,7 @@ int main(int argc, char *argv[])
 
 	num1 = argv[1];
 	num2 = argv[2];
-	if (argc != 3)
+	if (!_isdigit(num1) || !_isdigit(num2) || argc != 3)
 		handleError();
 
 	length1 = getLength(num1);
@@ -66,6 +67,23 @@ int main(int argc, char *argv[])
 	_putchar('\n');
 	free(res);
 	return (0);
+}
+
+/**
+ * _isdigit - checks for a digit (0 through 9)
+ * @str : character to be checked
+ * Return: 1 if is a digit, 0 otherwise
+ */
+int _isdigit(char *str)
+{
+	int i;
+
+	for (i = 0; str[i]; i++)
+	{
+		if (*str < '0' && *str < '9')
+			return (0);
+	}
+	return (1);
 }
 
 /**
