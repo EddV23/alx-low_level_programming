@@ -2,47 +2,9 @@
 #include <stdlib.h>
 #include "main.h"
 
-/**
- * _isdigit - checks for a digit (0 through 9)
- * @str : character to be checked
- * Return: 1 if is a digit, 0 otherwise
- */
-int _isdigit(char *str)
-{
-	int i = 0;
-
-	for (i = 0; str[i]; i++)
-	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
-	}
-	return (1);
-}
-
-/**
- * getLength - Returns the length of a string.
- * @str: The input string.
- *
- * Return: The length of the string.
- */
-int getLength(char *str)
-{
-	int length = 0;
-
-	for (length = 0; str[length] != '\0'; length++)
-		;
-	return (length);
-}
-
-/**
- * handleError - Handles errors and prints an error message
- * Return : void
- */
-void handleError(void)
-{
-	printf("Error\n");
-	exit(98);
-}
+int _isdigit(char *str);
+int getLength(char *str);
+void handleError(void);
 
 /**
  * main - Multiplies two positive numbers
@@ -92,4 +54,46 @@ int main(int argc, char *argv[])
 	_putchar('\n');
 	free(res);
 	return (0);
+}
+
+/**
+ * _isdigit - checks for a digit (0 through 9)
+ * @str : character to be checked
+ * Return: 1 if is a digit, 0 otherwise
+ */
+int _isdigit(char *str)
+{
+	int i = 0;
+
+	for (i = 0; str[i]; i++)
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+	}
+	return (1);
+}
+
+/**
+ * getLength - Returns the length of a string.
+ * @str: The input string.
+ *
+ * Return: The length of the string.
+ */
+int getLength(char *str)
+{
+	int length = 0;
+
+	for (length = 0; str[length] != '\0'; length++)
+		;
+	return (length);
+}
+
+/**
+ * handleError - Handles errors and prints an error message
+ * Return : void
+ */
+void handleError(void)
+{
+	printf("Error\n");
+	exit(98);
 }
