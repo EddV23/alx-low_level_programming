@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 {
 	char *num1, *num2;
 	int length1, length2, totalLen, *res, tempSum;
-	int i = 0, nz = 0, d1, d2;
+	int i, nz = 0, d1, d2;
 
 	num1 = argv[1];
 	num2 = argv[2];
