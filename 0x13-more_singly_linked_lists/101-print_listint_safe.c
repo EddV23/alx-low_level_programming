@@ -20,7 +20,7 @@ size_t print_listint_safe(const listint_t *head)
 		{
 			if (current == visited[i])
 			{
-				printf("[%p] %d\n", (void *)current, current->n);
+				printf("-> [%p] %d\n", (void *)current, current->n);
 				return (node_count);
 			}
 		}
