@@ -13,9 +13,6 @@ size_t free_listint_safe(listint_t **h)
 	size_t size = 0;
 	listint_t *current, *next_node;
 
-	if (h == NULL || *h == NULL)
-		return (0);
-
 	current = *h;
 	while (next_node != NULL)
 	{
