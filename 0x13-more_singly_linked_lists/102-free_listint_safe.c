@@ -21,7 +21,7 @@ size_t free_listint_safe(listint_t **h)
 	{
 		distance = current - current->next;
 
-		if (distance >= 0)
+		if (distance > 0)
 		{
 			tmp = current->next;
 			free(current);
