@@ -1,7 +1,5 @@
 #include "lists.h"
 
-void free_listint(listint_t *head);
-
 /**
  * free_listint_safe - Frees a listint_t linked list safely
  * @h: A pointer to a pointer to the head of the listint_t list
@@ -11,18 +9,17 @@ void free_listint(listint_t *head);
 size_t free_listint_safe(listint_t **h)
 {
 	size_t size = 0;
-	listint_t *current, *next_node;
+	listint_t *next_node;
 
-	current = *h;
+	next_node = *h;
 	while (next_node != NULL)
 	{
-		next_node = current->next;
-		free(current);
-		current = next_node;
+		next_node = *h;
+		*h = next_node->next;
+		free_listint(next_node);
 		size++;
 	}
 
-	*h = NULL;
 	return (size);
 }
 
@@ -34,12 +31,9 @@ size_t free_listint_safe(listint_t **h)
  */
 void free_listint(listint_t *head)
 {
-	listint_t *next_node;
+	if (head == NULL)
+		return;
 
-	while (head != NULL)
-	{
-		next_node = head;
-		next_node = next_node->next;
-		free(next_node);
-	}
+	free_listint(head->next);
+	free(head);
 }
