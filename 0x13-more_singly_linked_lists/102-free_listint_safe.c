@@ -10,6 +10,7 @@ size_t free_listint_safe(listint_t **h)
 {
 	size_t size = 0;
 	listint_t *current, *tmp;
+	int distance;
 
 	if (h == NULL || *h == NULL)
 		return (0);
@@ -18,7 +19,9 @@ size_t free_listint_safe(listint_t **h)
 
 	while (current != NULL)
 	{
-		if (current < (current)->next)
+		distance = current - current->next;
+
+		if (distance >= 0)
 		{
 			tmp = current->next;
 			free(current);
