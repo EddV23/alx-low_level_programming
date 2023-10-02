@@ -43,7 +43,7 @@ int main(int ac, char **av)
 	}
 
 	fd_from = open(av[1], O_RDONLY);
-	fd_to = open(av[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	fd_to = open(av[2], O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0664);
 	copy_file(fd_from, fd_to, av);
 
 	bytes_read = sizeof(buffer);
