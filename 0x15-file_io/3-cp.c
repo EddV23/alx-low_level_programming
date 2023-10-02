@@ -5,24 +5,21 @@
  * @from: Source file descriptor
  * @to: Destination file descriptor
  *
- * Return: 0 on success, or the corresponding error code on failure
+ * Return: void
  */
-int copy_file(int from, int to)
+void copy_file(int from, int to, char **av)
 {
-	ssize_t bytes_read, bytes_written;
-	char buffer[1024];
-
-	while ((bytes_read = read(from, buffer, sizeof(buffer))) > 0)
+	if (from == -1)
 	{
-		bytes_written = write(to, buffer, bytes_read);
-		if (bytes_written == -1)
-			return (99);
+		dprintf(2, "Error: Can't read from file %s\n", av[1]);
+		exit(98);
 	}
 
-	if (bytes_read == -1)
-		return (98);
-
-	return (0);
+	if (to == -1)
+	{
+		dprintf(2, "Error: Can't read from file %s\n", av[2]);
+		exit(99);
+	}
 }
 
 /**
@@ -35,40 +32,46 @@ int copy_file(int from, int to)
 int main(int ac, char **av)
 {
 	int fd_from, fd_to;
+	char buffer[1024];
+	ssize_t bytes_read, bytes_written;
 
 	if (ac != 3)
 	{
 		dprintf(2, "Usage: %s file_from file_to\n", av[0]);
-		return (97);
+		exit(97);
 	}
 
 	fd_from = open(av[1], O_RDONLY);
-	if (fd_from == -1)
-	{
-		dprintf(2, "Error: Can't read from file %s\n", av[1]);
-		return (98);
-	}
-
 	fd_to = open(av[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
-	if (fd_to == -1)
+	copy_file(fd_from, fd_to, av);
+
+	bytes_read = sizeof(buffer);
+	while (bytes_read)
 	{
-		dprintf(2, "Error: Can't write to %s\n", av[2]);
-		close(fd_from);
-		return (99);
+		bytes_read = read(fd_from, buffer, sizeof(buffer));
+		if (bytes_read == -1)
+			copy_file(-1, 0, av);
+		bytes_written = write(fd_to, buffer, bytes_read);
+		if (bytes_written == -1)
+			copy_file(0, -1, av);
+	}
+	if (close(fd_from) == -1)
+		{
+			dprintf(2, "Error: Can't close fd %d\n", fd_from);
+			exit(100);
+		}
+	if (close(fd_to) == -1)
+	{
+		dprintf(2, "Error: Can't close fd %d\n", fd_from);
+		exit(100);
 	}
 
-	if (copy_file(fd_from, fd_to) != 0)
-	{
-		close(fd_from);
-		close(fd_to);
-		return (99);
-	}
-
-	if (close(fd_from) == -1 || close(fd_to) == -1)
-	{
-		dprintf(2, "Error: Can't close fd %d\n", fd_from == -1 ? fd_to : fd_from);
-		return (100);
-	}
-
+	/*
+	 *if (close(fd_from) == -1 || close(fd_to) == -1)
+	 *{
+	 *	dprintf(2, "Error: Can't close fd %d\n", fd_from == -1 ? fd_to : fd_from);
+	 *	exit(100);
+	 *}
+	 */
 	return (0);
 }
