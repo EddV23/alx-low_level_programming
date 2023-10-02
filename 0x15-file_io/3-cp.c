@@ -18,7 +18,7 @@ void copy_file(int from, int to, char **av)
 
 	if (to == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[2]);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 		exit(99);
 	}
 }
