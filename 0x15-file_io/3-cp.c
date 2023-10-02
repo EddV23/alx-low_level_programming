@@ -38,30 +38,30 @@ int main(int ac, char **av)
 
 	if (ac != 3)
 	{
-		dprintf(2, "Usage: %s file_from file_to\n", av[0]);
+		dprintf(2, "%s\n", "Usage: %s file_from file_to\n");
 		exit(97);
 	}
 
 	fd_from = open(av[1], O_RDONLY);
-	fd_to = open(av[2], O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0664);
+	fd_to = open(av[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
 	copy_file(fd_from, fd_to, av);
 
-	bytes_read = sizeof(buffer);
-	while (bytes_read)
+	bytes_read = 1024;
+	while (bytes_read == 1024)
 	{
-		bytes_read = read(fd_from, buffer, sizeof(buffer));
+		bytes_read = read(fd_from, buffer, 1024);
 		if (bytes_read == -1)
 			copy_file(-1, 0, av);
 		bytes_written = write(fd_to, buffer, bytes_read);
 		if (bytes_written == -1)
 			copy_file(0, -1, av);
 	}
-	if (close(fd_from) == -1)
+	if ((close(fd_from)) == -1)
 	{
 		dprintf(2, "Error: Can't close fd %d\n", fd_from);
 		exit(100);
 	}
-	if (close(fd_to) == -1)
+	if ((close(fd_to)) == -1)
 	{
 		dprintf(2, "Error: Can't close fd %d\n", fd_from);
 		exit(100);
