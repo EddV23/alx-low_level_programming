@@ -1,6 +1,28 @@
 #include "main.h"
 
 /**
+ * check_elf - Checks if the file is an ELF file
+ * @e_ident: Pointer to the ELF header structure
+ *
+ */
+void check_elf(unsigned char *elf_header)
+{
+	int i;
+
+	for (i = 0; i < 4; i++)
+	{
+		if (elf_header[i] != 127 &&
+		    elf_header[i] != 'E' &&
+		    elf_header[i] != 'L' &&
+		    elf_header[i] != 'F')
+		{
+			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
+			exit(98);
+		}
+	}
+}
+
+/**
  * display_elf_magic - Display the ELF magic number
  * @elf_header: Pointer to the ELF header structure
  */
