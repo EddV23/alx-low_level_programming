@@ -4,6 +4,7 @@
  * copy_file - Copy the content of one file to another
  * @from: Source file descriptor
  * @to: Destination file descriptor
+ * @av: Argument vector
  *
  * Return: void
  */
@@ -56,22 +57,19 @@ int main(int ac, char **av)
 			copy_file(0, -1, av);
 	}
 	if (close(fd_from) == -1)
-		{
-			dprintf(2, "Error: Can't close fd %d\n", fd_from);
-			exit(100);
-		}
+	{
+		dprintf(2, "Error: Can't close fd %d\n", fd_from);
+		exit(100);
+	}
 	if (close(fd_to) == -1)
 	{
 		dprintf(2, "Error: Can't close fd %d\n", fd_from);
 		exit(100);
 	}
-
 	/*
-	 *if (close(fd_from) == -1 || close(fd_to) == -1)
-	 *{
+	 *if (close(fd_from) == -1 || close(fd_to) == -1){
 	 *	dprintf(2, "Error: Can't close fd %d\n", fd_from == -1 ? fd_to : fd_from);
-	 *	exit(100);
-	 *}
+	 *	exit(100);}
 	 */
 	return (0);
 }
