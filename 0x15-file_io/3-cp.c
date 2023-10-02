@@ -4,10 +4,9 @@
  * copy_file - copy the content of one file to another
  * @from: Source file descriptor
  * @to: Destination file descriptor
- *
- * Return: 0 on success, or the corresponding error code on failure
+ * Return: void
  */
-int copy_file(int from, int to)
+void copy_file(int from, int to)
 {
 	ssize_t bytes_read, bytes_written;
 	char buffer[1024];
@@ -16,13 +15,17 @@ int copy_file(int from, int to)
 	{
 		bytes_written = write(to, buffer, bytes_read);
 		if (bytes_written == -1)
+		{
+			dprintf(2, "Error: Can't write to destination file\n");
 			exit(99);
+		}
 	}
 
 	if (bytes_read == -1)
+	{
+		dprintf(2, "Error: Can't read from source file\n");
 		exit(98);
-
-	return (0);
+	}
 }
 
 /**
@@ -52,21 +55,16 @@ int main(int argc, char **argv)
 	fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (fd_to == -1)
 	{
-		dprintf(2, "Error: Can't write to %s\n", argv[2]);
+		dprintf(2, "Error: Can't write to file %s\n", argv[2]);
 		close(fd_from);
 		exit(99);
 	}
 
-	if (copy_file(fd_from, fd_to) != 0)
-	{
-		close(fd_from);
-		close(fd_to);
-		exit(99);
-	}
+	copy_file(fd_from, fd_to);
 
 	if (close(fd_from) == -1 || close(fd_to) == -1)
 	{
-		dprintf(2, "Error: Can't close fd %d\n", fd_from == -1 ? fd_to : fd_from);
+		dprintf(2, "Error: Can't close file descriptor\n");
 		exit(100);
 	}
 
