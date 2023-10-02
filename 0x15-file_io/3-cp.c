@@ -12,13 +12,13 @@ void copy_file(int from, int to, char **av)
 {
 	if (from == -1)
 	{
-		dprintf(2, "Error: Can't read from file %s\n", av[1]);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
 		exit(98);
 	}
 
 	if (to == -1)
 	{
-		dprintf(2, "Error: Can't read from file %s\n", av[2]);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[2]);
 		exit(99);
 	}
 }
@@ -38,7 +38,7 @@ int main(int ac, char **av)
 
 	if (ac != 3)
 	{
-		dprintf(2, "%s\n", "Usage: %s file_from file_to\n");
+		dprintf(STDERR_FILENO, "%s\n", "Usage: %s file_from file_to");
 		exit(97);
 	}
 
@@ -58,12 +58,12 @@ int main(int ac, char **av)
 	}
 	if ((close(fd_from)) == -1)
 	{
-		dprintf(2, "Error: Can't close fd %d\n", fd_from);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
 		exit(100);
 	}
 	if ((close(fd_to)) == -1)
 	{
-		dprintf(2, "Error: Can't close fd %d\n", fd_from);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
 		exit(100);
 	}
 	/*
