@@ -47,7 +47,7 @@ int main(int ac, char **av)
 	copy_file(fd_from, fd_to, av);
 
 	bytes_read = sizeof(buffer);
-	while (bytes_read)
+	while (bytes_read == 1024)
 	{
 		bytes_read = read(fd_from, buffer, sizeof(buffer));
 		if (bytes_read == -1)
