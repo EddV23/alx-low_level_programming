@@ -205,7 +205,8 @@ void display_elf_type(unsigned int elf_type, unsigned char *elf_ident)
  * @elf_entry: The entry point address
  * @elf_ident: Pointer to the ELF header structure
  */
-void display_elf_entry_point(unsigned long int elf_entry, unsigned char *elf_ident)
+void display_elf_entry_point(unsigned long int elf_entry, unsigned
+			     char *elf_ident)
 {
 	printf("  Entry point address:               ");
 
@@ -225,7 +226,7 @@ void display_elf_entry_point(unsigned long int elf_entry, unsigned char *elf_ide
 
 /**
  * close_elf_file - Closes an ELF file
- * @elf: File descriptor of the ELF file
+ * @elf_close: File descriptor of the ELF file
  *
  */
 void close_elf_file(int elf_close)
@@ -240,8 +241,8 @@ void close_elf_file(int elf_close)
 
 /**
  * main - Entry point, display ELF header information
- * @argc: Argument count
- * @argv: Argument vector
+ * @ac: Argument count
+ * @av: Argument vector
  *
  * Return: 0 on success, or the corresponding error code on failure
  */
