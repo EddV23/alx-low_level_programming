@@ -28,11 +28,11 @@ void check_elf(unsigned char *elf_ident)
  */
 void display_elf_magic(unsigned char *elf_ident)
 {
-	int i;
+	int i = 0;
 
 	printf("  Magic:   ");
 
-	for (i = 0; i < EI_NIDENT; i++)
+	while (i < EI_NIDENT)
 	{
 		printf("%02x", elf_ident[i]);
 
@@ -40,6 +40,7 @@ void display_elf_magic(unsigned char *elf_ident)
 			printf("\n");
 		else
 			printf(" ");
+		i++;
 	}
 }
 
