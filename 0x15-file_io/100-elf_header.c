@@ -152,7 +152,7 @@ void display_elf_osabi(unsigned char *elf_ident)
 		printf("Standalone App\n");
 		break;
 	default:
-		printf("<unknown: %d>\n", elf_ident[EI_OSABI]);
+		printf("<unknown: %x>\n", elf_ident[EI_OSABI]);
 	}
 }
 
