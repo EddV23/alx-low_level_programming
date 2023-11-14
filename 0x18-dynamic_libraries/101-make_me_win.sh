@@ -1,3 +1,3 @@
 #!/bin/bash
-wget -P /tmp https://github.com/EddV23/alx-low_level_programming/raw/master/0x18-dynamic_libraries/myrand.so
-export LD_PRELOAD=/tmp/myrand.so
+wget -P .. https://github.com/EddV23/alx-low_level_programming/blob/master/0x18-dynamic_libraries/mywin.so
+export LD_PRELOAD="$PWD/../myrand_2.so"
