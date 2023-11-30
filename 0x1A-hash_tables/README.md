@@ -13,14 +13,20 @@ This project implements a basic hash table data structure in C, along with vario
 - [Advanced Feature](#advanced-feature)
 - [License](#license)
 
+---
+
 ## Overview
 
 A hash table is a data structure that allows efficient insertion, retrieval, and deletion of key-value pairs. It uses a hash function to map keys to indices in an array, providing constant-time average case complexity for these operations.
+
+---
 
 This project consists of the following components:
 - **Basic Hash Table:** Implements a hash table with separate chaining for collision resolution.
 - **djb2 Hash Function:** Utilizes the djb2 hash function for converting keys into hash values.
 - **Sorted Hash Table (Advanced Feature):** Implements a sorted hash table using doubly linked lists to maintain a sorted order of keys.
+
+---
 
 ## File Structure
 
@@ -34,21 +40,26 @@ This project consists of the following components:
 - **6-hash_table_delete.c:** Deletes the hash table.
 - **100-sorted_hash_table.c (Advanced Feature):** Implements a sorted hash table.
 
+---
+
 ## Usage
 
 To use the hash table, include the "hash_tables.h" header in your C program and compile it with the provided source files. See the [Compilation](#compilation) section for details.
+
+---
 
 ## Compilation
 
 Compile the C files using a C compiler. For example, using `gcc`:
 
-```bash
+\```bash
 gcc -Wall -Werror -Wextra -pedantic *.c -o hash_table
+\```
 
 ---
 
 ## Example
-```c
+\```c
 #include "hash_tables.h"
 
 int main(void)
@@ -68,11 +79,14 @@ int main(void)
 
     return (0);
 }
+\```
 
 ---
 
 ## Advanced Feature
 The project includes an advanced feature: a sorted hash table. To use this feature, include the "hash_tables.h" header and compile the provided source files, including "100-sorted_hash_table.c".
+
+---
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
