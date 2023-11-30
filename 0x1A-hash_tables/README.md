@@ -52,14 +52,15 @@ To use the hash table, include the "hash_tables.h" header in your C program and 
 
 Compile the C files using a C compiler. For example, using `gcc`:
 
-\```bash
+```bash
 gcc -Wall -Werror -Wextra -pedantic *.c -o hash_table
-\```
+```
 
 ---
 
 ## Example
-\```c
+
+```c
 #include "hash_tables.h"
 
 int main(void)
@@ -79,7 +80,7 @@ int main(void)
 
     return (0);
 }
-\```
+```
 
 ---
 
