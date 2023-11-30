@@ -2,9 +2,9 @@
 
 /**
  * hash_djb2 - hash function implementing the djb2 algorithm
- * @str - pointer to the string to be hashed
+ * @str: pointer to the string to be hashed
  *
- * Return: Always 0 (Success) - the hash table
+ * Return: Always 0 (Success) - the hash calculated
  */
 unsigned long int hash_djb2(const unsigned char *str)
 {
