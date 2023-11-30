@@ -45,6 +45,8 @@ Compile the C files using a C compiler. For example, using `gcc`:
 ```bash
 gcc -Wall -Werror -Wextra -pedantic *.c -o hash_table
 
+---
+
 ## Example
 ```c
 #include "hash_tables.h"
@@ -66,6 +68,8 @@ int main(void)
 
     return (0);
 }
+
+---
 
 ## Advanced Feature
 The project includes an advanced feature: a sorted hash table. To use this feature, include the "hash_tables.h" header and compile the provided source files, including "100-sorted_hash_table.c".
