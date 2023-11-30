@@ -47,11 +47,30 @@ Compile the C files using a C compiler. For example, using `gcc`:
 gcc -Wall -Werror -Wextra -pedantic *.c -o hash_table
 
 
-# Advanced Feature
+## Example
+```c
+#include "hash_tables.h"
+
+int main(void)
+{
+    hash_table_t *ht;
+
+    ht = hash_table_create(1024);
+    hash_table_set(ht, "key1", "value1");
+    hash_table_set(ht, "key2", "value2");
+    hash_table_set(ht, "key3", "value3");
+
+    printf("Value for key 'key2': %s\n", hash_table_get(ht, "key2"));
+
+    hash_table_print(ht);
+
+    hash_table_delete(ht);
+
+    return (0);
+}
+
+## Advanced Feature
 The project includes an advanced feature: a sorted hash table. To use this feature, include the "hash_tables.h" header and compile the provided source files, including "100-sorted_hash_table.c".
 
-# Contributing
-Contributions are welcome! Fork the repository, make your changes, and submit a pull request. Please follow the existing coding style and include appropriate documentation for your changes.
-
-# License
+## License
 This project is licensed under the MIT License - see the LICENSE file for details.
