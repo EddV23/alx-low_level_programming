@@ -11,7 +11,6 @@ This project implements a basic hash table data structure in C, along with vario
 - [Compilation](#compilation)
 - [Example](#example)
 - [Advanced Feature](#advanced-feature)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Overview
@@ -45,7 +44,6 @@ Compile the C files using a C compiler. For example, using `gcc`:
 
 ```bash
 gcc -Wall -Werror -Wextra -pedantic *.c -o hash_table
-
 
 ## Example
 ```c
